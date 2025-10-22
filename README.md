@@ -29,6 +29,7 @@
 
 ### Methods
 
+- play: 게임을 끝까지 시뮬레이션
 - playOneTurn: 게임을 한 단계 진행
 - getWinner: 게임의 현재 우승자를 반환
 
