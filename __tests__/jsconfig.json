@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./__tests__",
+    "paths": {
+      "*": ["node_modules/*"]
+    }
+  },
+  "typeAcquisition": {
+    "include": ["jest"]
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}
