@@ -1,5 +1,5 @@
-import InvalidCarNameError from './InvalidCarName';
-import InvalidTurnError from './InvalidTurn';
-import CustomError from './CustomError';
+import InvalidCarNameError from './InvalidCarName.js';
+import InvalidTurnError from './InvalidTurn.js';
+import CustomError from './CustomError.js';
 
 export { InvalidCarNameError, InvalidTurnError, CustomError };

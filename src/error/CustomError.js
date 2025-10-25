@@ -1,4 +1,4 @@
-import generateErrorMessage from './util';
+import generateErrorMessage from './util.js';
 
 class CustomError extends Error {
   constructor(message) {

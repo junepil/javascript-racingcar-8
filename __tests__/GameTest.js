@@ -1,7 +1,7 @@
-import Car from '../src/Car';
-import Game from '../src/Game';
+import Car from '../src/Car.js';
+import Game from '../src/Game.js';
 
-jest.mock('../src/Car');
+jest.mock('../src/Car.js');
 
 const mockedCars = [
   { position: 2, name: 'sam' },

@@ -1,5 +1,4 @@
-/* eslint-disable no-restricted-syntax */
-import Car from "./Car";
+import Car from "./Car.js";
 
 class Game {
   constructor(carNames, maxTurn) {
