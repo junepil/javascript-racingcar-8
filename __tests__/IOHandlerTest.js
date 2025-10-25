@@ -3,7 +3,7 @@ import {
   getTurns,
   printGameHistory,
   printWinner,
-} from '../src/IOHandler.js';
+} from '../src/util/IOHandler.js';
 import { Console } from '@woowacourse/mission-utils';
 
 const ERROR_STRING = '[ERROR]';

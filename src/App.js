@@ -4,7 +4,7 @@ import {
   getTurns,
   printGameHistory,
   printWinner,
-} from './IOHandler.js';
+} from './util/IOHandler.js';
 
 class App {
   async run() {

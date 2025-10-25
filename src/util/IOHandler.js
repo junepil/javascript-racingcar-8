@@ -1,5 +1,9 @@
 import { Console } from '@woowacourse/mission-utils';
-import { CustomError, InvalidCarNameError, InvalidTurnError } from './error/index.js';
+import {
+  CustomError,
+  InvalidCarNameError,
+  InvalidTurnError,
+} from '../error/index.js';
 
 function parseCars(input) {
   const cars = input.split(',');
