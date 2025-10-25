@@ -35,6 +35,8 @@ function parseTurns(input) {
 
   if (turns <= 0) throw new InvalidTurnError();
 
+  if (Number.isNaN(turns)) throw new InvalidTurnError();
+  
   return turns;
 }
 
