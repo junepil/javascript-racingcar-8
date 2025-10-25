@@ -8,9 +8,6 @@ import {
 function parseCars(input) {
   const cars = input.split(',');
 
-  if (cars.length === 0)
-    throw new CustomError('There most be at least one car in the race');
-
   for (const car of cars) {
     if (car.length > 5) throw new InvalidCarNameError();
     if (car.length === 0)
