@@ -55,8 +55,9 @@ function printGameHistory(gameHistory) {
     for (const { name, position } of turn) {
       const track = '-'.repeat(position);
 
-      Console.print(`${name} : ${track}\n\n`);
+      Console.print(`${name} : ${track}\n`);
     }
+    Console.print('\n');
   }
 }
 
