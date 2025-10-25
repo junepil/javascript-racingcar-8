@@ -8,11 +8,10 @@ import { Console } from '@woowacourse/mission-utils';
 
 const ERROR_STRING = '[ERROR]';
 
-const mockQuestions = (inputs) => {
+const mockQuestion = (input) => {
   Console.readLineAsync = jest.fn();
 
   Console.readLineAsync.mockImplementation(() => {
-    const input = inputs.shift();
     return Promise.resolve(input);
   });
 };
@@ -25,51 +24,51 @@ const getLogSpy = () => {
 
 describe('IO handler', () => {
   describe('getCarNames', () => {
-    test('success', async () => {
-      const inputs = ['sam', 'sam,alex,tom'];
-      const outputs = [['sam'], ['sam', 'alex', 'tom']];
+    it.each([
+      ['sam', ['sam']],
+      ['sam,alex,tom', ['sam', 'alex', 'tom']]
+    ])
+      ('parse names in %s', async (input, output) => {
 
-      mockQuestions(inputs);
-      for (const output of outputs) {
-        const result = await getCarNames();
+      mockQuestion(input);
+      const result = await getCarNames();
 
-        expect(result).toEqual(output);
-      }
+      expect(result).toEqual(output);
     });
-    test('fail', async () => {
-      const inputs = [
-        '',
-        'pineapple, apple',
-        '엄청큰자동차, 엄청빠른자동차',
-        'alex,,bob,',
-      ];
+    it.each([
+      [''],
+      ['pineapple, apple'],
+      ['엄청큰자동차, 엄청빠른자동차'],
+      ['alex,,bob,']
+    ])
+      ('throws error with input %s', async (input) => {
 
-      mockQuestions(inputs);
-      for (let i = 0; i < inputs.length; i++) {
-        // will this work?
-        await expect(getCarNames()).rejects.toThrow(ERROR_STRING);
-      }
+      mockQuestion(input);
+      
+      await expect(getCarNames()).rejects.toThrow(ERROR_STRING);
     });
   });
   describe('getTurns', () => {
-    test('success', async () => {
-      const inputs = ['4'];
-      const output = 4;
-      mockQuestions(inputs);
+    it.each([
+      ['4', 4],
+      ['3.14', 3]
+    ])('parse turns to number with %s', async (input, output) => {
+      mockQuestion(input);
 
       const result = await getTurns();
       expect(result).toBe(output);
     });
-    test('fail', async () => {
-      const inputs = ['0', '-3', '3.14', 'twice'];
-      mockQuestions(inputs);
-
-      for (const input of inputs) {
-        await expect(getTurns()).rejects.toThrow(ERROR_STRING);
-      }
+    it.each([
+      ['0'],
+      ['-3'],
+      ['twice']
+    ])('throws error with input %s', async (input) => {
+      mockQuestion(input);
+      
+      await expect(getTurns()).rejects.toThrow(ERROR_STRING);
     });
   });
-  test('printWinner', () => {
+  it('prints winner using name array', () => {
     const input = ['john', 'sam'];
     const output = 'john, sam';
 
@@ -78,7 +77,7 @@ describe('IO handler', () => {
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
   });
-  test('printGameHistory', () => {
+  it('prints entire game history', () => {
     const input = [
       [
         { name: 'john', position: 1 },

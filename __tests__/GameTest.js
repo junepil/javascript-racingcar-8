@@ -59,7 +59,7 @@ describe('Game', () => {
     
     game.saveHistory();
 
-    const record = game.history[0];
+    const record = game.history.pop();
     expect(record).toEqual(result);
   });
 })

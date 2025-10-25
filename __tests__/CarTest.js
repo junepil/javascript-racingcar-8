@@ -1,11 +1,10 @@
 import Car from '../src/Car.js';
 import { Random } from '@woowacourse/mission-utils';
 
-const mockRandomInteger = (inputs) => {
+const mockRandomInteger = (input) => {
   Random.pickNumberInRange = jest.fn();
 
   Random.pickNumberInRange.mockImplementation(() => {
-    const input = inputs.shift();
     return input;
   });
 }
@@ -13,17 +12,17 @@ const mockRandomInteger = (inputs) => {
 describe('Car', () => {
   const car = new Car('sam');
 
-  test('constructor', () => {
+  it('creates new car instance', () => {
     expect(car.position).toBe(0);
   })
-  test('move car', () => {
-    const inputs = [4, 3];
-    const outputs = [1, 1];
-    mockRandomInteger(inputs);
+  it.each([
+    [4, 1],
+    [3, 1]
+  ])
+    ('moves car forward with %s', (input, output) => {
+    mockRandomInteger(input);
 
-    for (const output of outputs) {
-      car.move();
-      expect(car.position).toBe(output);
-    }
+    car.move();
+    expect(car.position).toBe(output);
   })
 })
